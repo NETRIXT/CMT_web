@@ -18,8 +18,20 @@ def index():
 @app.route('/scrape', methods=['POST'])
 def scrape():
     url = request.form.get('url')
+
+    if not url.startswith(('http://', 'https://')):
+        # Prepend 'https://' to the URL
+        url = 'https://' + url
+
     username = request.form.get('username')  # Get the username from the form
     password = request.form.get('password')  # Get the password from the form
+
+    try:
+         initial_response = requests.get(url, auth=HTTPBasicAuth(username, password))
+    except requests.exceptions.SSLError:
+        print("HTTPS failed, trying with HTTP.")
+        url = url.replace('https://', 'http://')
+        initial_response = requests.get(url, auth=HTTPBasicAuth(username, password))
 
     # Send an initial request to check if authentication is required
     initial_response = requests.get(url, auth=HTTPBasicAuth(username, password))  # Use the username and password for authentication
