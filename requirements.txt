@@ -1,0 +1,6 @@
+flask
+requests
+requests.auth
+bs4
+pandas
+xlsxwriter
