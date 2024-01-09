@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "cmt_web.py", "use": "@vercel/python" }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "/cmt_web.py" }
+  ]
+}
