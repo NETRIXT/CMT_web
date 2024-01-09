@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content Management Team Web Scraper</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
+</head>
+<body>
+    <h1>Content Management Team Web Scraper</h1>
+    <form action="/scrape" method="post">
+        <label for="url">URL:</label>
+        <input type="text" name="url" required><br>
+
+        {% if requires_auth %}
+        <label for="username">Username:</label>
+        <input type="text" name="username" required><br>
+        <label for="password">Password:</label>
+        <input type="password" name="password" required><br>
+        {% endif %}
+
+        <button type="submit">Scrape and Download</button>
+    </form>
+</body>
+</html>
